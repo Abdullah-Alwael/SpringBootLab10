@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Check(constraints = "salary >= 0")
 public class JobPost {
 
     @Id
@@ -33,7 +35,7 @@ public class JobPost {
 
     @NotNull(message = "salary can not be empty")
     @PositiveOrZero(message = "salary must be a positive number or zero")
-    @Column(columnDefinition = "double not null chack(salary>=0)")
+    @Column(columnDefinition = "double not null")
     private Double salary;
 
     @Column(columnDefinition = "datetime default current_timestamp")

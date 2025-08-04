@@ -21,11 +21,12 @@ public class UserService {
     }
 
     public Boolean updateUser(Integer userId, User user){
-        User oldUser = userRepository.getById(userId);
 
-        if (oldUser == null){
+        if (!userRepository.existsById(userId)){
             return false; // user does not exist
         }
+
+        User oldUser = userRepository.getById(userId);
 
         oldUser.setName(user.getName());
         oldUser.setAge(user.getAge());
@@ -38,11 +39,12 @@ public class UserService {
     }
 
     public Boolean deleteUser(Integer userId){
-        User oldUser = userRepository.getById(userId);
 
-        if (oldUser == null){
+        if (!userRepository.existsById(userId)){
             return false; // user does not exist
         }
+
+        User oldUser = userRepository.getById(userId);
 
         userRepository.delete(oldUser);
         return true; // user deleted

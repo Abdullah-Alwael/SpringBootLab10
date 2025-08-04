@@ -21,11 +21,11 @@ public class JobApplicationService {
     }
 
     public Boolean withdrawJobApplication(Integer jobApplicationId){
-        JobApplication oldJobApplication = jobApplicationRepository.getById(jobApplicationId);
-
-        if (oldJobApplication == null){
+        if (!jobApplicationRepository.existsById(jobApplicationId)){
             return false; // job application does not exist
         }
+
+        JobApplication oldJobApplication = jobApplicationRepository.getById(jobApplicationId);
 
         jobApplicationRepository.delete(oldJobApplication);
         return true; // job application deleted

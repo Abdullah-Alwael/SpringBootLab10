@@ -5,11 +5,13 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Check(constraints = "age >= 22")
 public class User {
 
     @Id
@@ -33,7 +35,7 @@ public class User {
     @NotNull(message = "age can not be empty")
     @Positive(message = "age must be a positive number")
     @Min(value = 22, message = "age must not be younger than 22")
-    @Column(columnDefinition = "int not null check (age >= 22)")
+    @Column(columnDefinition = "int not null")
     private Integer age;
 
     @NotEmpty(message = "role can not be empty")

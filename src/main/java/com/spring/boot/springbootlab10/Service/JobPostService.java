@@ -23,11 +23,12 @@ public class JobPostService {
     }
 
     public Boolean updateJobPost(Integer jobPostId, JobPost jobPost){
-        JobPost oldJobPost = jobPostRepository.getById(jobPostId);
 
-        if (oldJobPost == null){
+        if (!jobPostRepository.existsById(jobPostId)){
             return false; // jobPost does not exist
         }
+
+        JobPost oldJobPost = jobPostRepository.getById(jobPostId);
 
         oldJobPost.setTitle(jobPost.getTitle());
         oldJobPost.setDescription(jobPost.getDescription());
@@ -40,11 +41,12 @@ public class JobPostService {
     }
 
     public Boolean deleteJobPost(Integer jobPostId){
-        JobPost oldJobPost = jobPostRepository.getById(jobPostId);
 
-        if (oldJobPost == null){
+        if (!jobPostRepository.existsById(jobPostId)){
             return false; // jobPost does not exist
         }
+
+        JobPost oldJobPost = jobPostRepository.getById(jobPostId);
 
         jobPostRepository.delete(oldJobPost);
         return true; // jobPost deleted
