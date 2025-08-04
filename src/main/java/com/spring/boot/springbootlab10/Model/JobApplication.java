@@ -1,9 +1,6 @@
 package com.spring.boot.springbootlab10.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class JobApplication {
-    @id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
