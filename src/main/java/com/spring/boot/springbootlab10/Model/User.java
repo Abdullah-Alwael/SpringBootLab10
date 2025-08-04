@@ -20,7 +20,7 @@ public class User {
 
     @NotEmpty(message = "name must not be empty")
     @Size(min = 5, message = "name must not be less than 5 characters")
-    @Pattern(regexp = "\\D", message = "name must not contain numbers") // not a number
+    @Pattern(regexp = "^\\D+$", message = "name must not contain numbers") // not a number
     @Column(columnDefinition = "varchar(30) not null")
     private String name;
 
