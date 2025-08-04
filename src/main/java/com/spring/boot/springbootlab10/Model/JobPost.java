@@ -26,7 +26,7 @@ public class JobPost {
     private String title;
 
     @NotEmpty(message = "description can not be empty")
-    @Column(columnDefinition = "varchar(30) not null")
+    @Column(columnDefinition = "varchar(255) not null")
     private String description;
 
     @NotEmpty(message = "location can not be empty")
@@ -38,6 +38,6 @@ public class JobPost {
     @Column(columnDefinition = "double not null")
     private Double salary;
 
-    @Column(columnDefinition = "datetime default current_timestamp")
+    @Column(columnDefinition = "datetime not null default current_timestamp")
     private LocalDate postingDate;
 }
