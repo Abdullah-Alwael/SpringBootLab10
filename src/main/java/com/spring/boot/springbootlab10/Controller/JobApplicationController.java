@@ -33,13 +33,14 @@ public class JobApplicationController {
 
         if (jobApplicationStatus == -100){
             // user does not exist
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Error, user does not exist"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Error, user does not exist"));
 
         }
-        if (jobApplicationStatus == -100){
+        if (jobApplicationStatus == -200){
             // job post does not exist
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Error, Job post does not exist"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Error, Job post does not exist"));
         }
+
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("JobApplication successful"));
     }
 
