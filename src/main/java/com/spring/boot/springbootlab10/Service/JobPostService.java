@@ -13,18 +13,18 @@ import java.util.List;
 public class JobPostService {
     private final JobPostRepository jobPostRepository;
 
-    public List<JobPost> getJobPosts(){
+    public List<JobPost> getJobPosts() {
         return jobPostRepository.findAll();
     }
 
-    public void addJobPost(JobPost jobPost){
+    public void addJobPost(JobPost jobPost) {
         jobPost.setPostingDate(LocalDate.now()); // set the time of posting
         jobPostRepository.save(jobPost);
     }
 
-    public Boolean updateJobPost(Integer jobPostId, JobPost jobPost){
+    public Boolean updateJobPost(Integer jobPostId, JobPost jobPost) {
 
-        if (!jobPostRepository.existsById(jobPostId)){
+        if (!jobPostRepository.existsById(jobPostId)) {
             return false; // jobPost does not exist
         }
 
@@ -34,15 +34,14 @@ public class JobPostService {
         oldJobPost.setDescription(jobPost.getDescription());
         oldJobPost.setSalary(jobPost.getSalary());
         oldJobPost.setLocation(jobPost.getLocation());
-        oldJobPost.setPostingDate(jobPost.getPostingDate());
 
         jobPostRepository.save(oldJobPost);
         return true; // jobPost updated
     }
 
-    public Boolean deleteJobPost(Integer jobPostId){
+    public Boolean deleteJobPost(Integer jobPostId) {
 
-        if (!jobPostRepository.existsById(jobPostId)){
+        if (!jobPostRepository.existsById(jobPostId)) {
             return false; // jobPost does not exist
         }
 
