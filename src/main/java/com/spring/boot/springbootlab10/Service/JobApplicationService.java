@@ -12,16 +12,27 @@ import java.util.List;
 public class JobApplicationService {
     private final JobApplicationRepository jobApplicationRepository;
 
-    public List<JobApplication> getJobApplications(){
+    private final UserService userService;
+    private final JobPostService jobPostService;
+
+    public List<JobApplication> getJobApplications() {
         return jobApplicationRepository.findAll();
     }
 
-    public void applyForJob(JobApplication jobApplication){
+    public Integer applyForJob(JobApplication jobApplication) {
+        if (!userService.userExists(jobApplication.getUserId())){
+            return -100;
+        }
+        if (!jobPostService.jobPostExists(jobApplication.getJobPostId())){
+            return -200;
+        }
+
         jobApplicationRepository.save(jobApplication);
+        return 0; // applied successfully, not needed
     }
 
-    public Boolean withdrawJobApplication(Integer jobApplicationId){
-        if (!jobApplicationRepository.existsById(jobApplicationId)){
+    public Boolean withdrawJobApplication(Integer jobApplicationId) {
+        if (!jobApplicationRepository.existsById(jobApplicationId)) {
             return false; // job application does not exist
         }
 

@@ -50,4 +50,9 @@ public class UserService {
         return true; // user deleted
     }
 
+    // to check if user exists
+    public Boolean userExists(Integer userId){
+        return userRepository.existsById(userId);
+    }
+
 }

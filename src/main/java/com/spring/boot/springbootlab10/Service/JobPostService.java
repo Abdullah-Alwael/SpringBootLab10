@@ -50,4 +50,9 @@ public class JobPostService {
         jobPostRepository.delete(oldJobPost);
         return true; // jobPost deleted
     }
+
+    // to check if job post exists
+    public Boolean jobPostExists(Integer jobPostId){
+        return jobPostRepository.existsById(jobPostId);
+    }
 }

@@ -29,7 +29,17 @@ public class JobApplicationController {
                     ApiResponse(errors.getFieldError().getDefaultMessage()));
         }
 
-        jobApplicationService.applyForJob(jobApplication);
+        Integer jobApplicationStatus =  jobApplicationService.applyForJob(jobApplication);
+
+        if (jobApplicationStatus == -100){
+            // user does not exist
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Error, user does not exist"));
+
+        }
+        if (jobApplicationStatus == -100){
+            // job post does not exist
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Error, Job post does not exist"));
+        }
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("JobApplication successful"));
     }
 
